@@ -1,0 +1,37 @@
+# Render.com Deployment Configuration
+# https://render.com/docs/blueprint-spec
+
+services:
+  - type: web
+    name: airbnb-api
+    env: node
+    region: oregon
+    plan: free
+    branch: main
+    rootDir: api
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DB_URL
+        sync: false
+      - key: PORT
+        value: 10000
+      - key: CLIENT_URL
+        sync: false
+      - key: COOKIE_TIME
+        value: 30
+      - key: SESSION_SECRET
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: JWT_EXPIRY
+        value: 7d
+      - key: CLOUDINARY_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
